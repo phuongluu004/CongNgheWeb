@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mednodeapp/login</title>
+    <style>
+      body{
+        position: relative; 
+        background: white; 
+        flex-direction: row; 
+        justify-content: flex-start; 
+        align-items: flex-start; 
+        display: flex; 
+        gap:200px
+      }
+    </style>
+</head>
+<body>
+        
+          <img style="width: 500px; height: 670px" src="/anhlogin.png" />
+          <div style="width: 500px; height: 670px; background: #D9D9D9; border-radius: 20px">
+          <div style="mix-blend-mode: color-burn; color: #BC0606; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word;text-align:center;">Vui lòng nhập thông tin để đăng nhập</div>
+          <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word;position:absolute;top:100px">Số điện thoại:<input id="sdt" type="text" name="sdt" value="" style="border-style:none;border-radius:20px;height:25px;width:250px"></div>
+          <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word;position:absolute;top:150px">Mật khẩu:  <input id="pass" type="password" name="pass" style="border-style:none;border-radius:20px;height:25px;width:250px"></div>
+          <a href="">
+            <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word;position:absolute;top:200px;border: 1px solid black;border-radius:20px;background-color: white;width:75px">Đăng ký</div>
+          </a>
+          <a href="">
+
+            <div id="btnlogin" style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word;position:absolute;top:200px;left: 800px;border: 1px solid black;border-radius:20px;background-color: white;" onclick="onLogin()">Đăng nhập</div>
+          </a>
+          <a href="">
+            <div style="color: #BB1313; font-size: 17px; font-family: Inter; font-weight: 400; word-wrap: break-word;position:absolute;top:300px;right:500px">Quên mật khẩu?</div>
+          </a>
+          </div>
+        <script>
+          function onLogin(){
+            var sdt = document.getElementById("sdt").value;
+            var pass = document.getElementById("pass").value;
+            fetch('http://localhost:3000/login',{
+              method: 'POST',
+              headers:{
+                'Content-Type':'application/json'
+              },
+              body:JSON.stringify({sdt : sdt,pass : pass})
+            })
+            .then(response=>{response.json()})
+            .then(data =>{
+              console.log(data)
+            })
+            .catch(error =>{
+              console.error('Error:'+error);
+            });
+            
+          }
+        </script>
+
+</body>
+</html>
